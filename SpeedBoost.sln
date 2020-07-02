@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpeedBoost", "SpeedBoost\SpeedBoost.vcxproj", "{36E1D1DA-AC1A-4597-AE89-95CD789787D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36E1D1DA-AC1A-4597-AE89-95CD789787D9}.Release|x64.ActiveCfg = Release|x64
+		{36E1D1DA-AC1A-4597-AE89-95CD789787D9}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {795E0E42-7833-4470-AEA7-3C03B40D7DF1}
+	EndGlobalSection
+EndGlobal
