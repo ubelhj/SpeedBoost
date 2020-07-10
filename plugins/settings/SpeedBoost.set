@@ -1,0 +1,5 @@
+SpeedBoost Plugin
+1|Enable|speedboost_enabled
+9|Speed added is on top of your current speed. Defaults to 0.25.
+4|Speed added|speedboost_power|0|5
+9|Speedboost plugin built on top of Minefield plugin by FrowzySquirrel
