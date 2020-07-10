@@ -12,6 +12,7 @@ class SpeedBoost: public BakkesMod::Plugin::BakkesModPlugin
 	virtual void onLoad();
 	virtual void onUnload();
 
+	void updateEnabled();
 	void OnBoostPickUp(ActorWrapper caller, void* params, std::string funcName);
 	void onTick();
 };
