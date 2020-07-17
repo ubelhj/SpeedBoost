@@ -6,7 +6,7 @@ BAKKESMOD_PLUGIN(SpeedBoost, "Boost your speed with boost pads", plugin_version,
 
 bool enabled;
 float speedBoost;
-int maxBoost = 0;
+float maxBoost;
 
 void SpeedBoost::onLoad()
 {
@@ -19,11 +19,11 @@ void SpeedBoost::onLoad()
 	boostCvar.addOnValueChanged([this](std::string, CVarWrapper cvar) { speedBoost = cvar.getFloatValue(); });
 
 	// buggy cvar
-	/*
-	auto maxBoostCvar = cvarManager->registerCvar("speedboost_maxboost", "0", "Maximum boost a car can have");
-	maxBoost = maxBoostCvar.getIntValue();
-	maxBoostCvar.addOnValueChanged([this](std::string, CVarWrapper cvar) { maxBoost = cvar.getIntValue(); });
-	*/
+	
+	auto maxBoostCvar = cvarManager->registerCvar("speedboost_maxboost", "0", "Maximum boost a car can have", 1, true, 0, true, 100);
+	setMaxBoost(maxBoostCvar.getIntValue());
+	maxBoostCvar.addOnValueChanged([this](std::string, CVarWrapper cvar) { setMaxBoost(cvar.getIntValue()); });
+	
 }
 
 struct TheArgStruct
@@ -62,7 +62,9 @@ void SpeedBoost::OnBoostPickUp(ActorWrapper caller, void* params, std::string fu
 
 	auto boost = receiver.GetBoostComponent();
 	if (!boost.IsNull()) {
-		boost.SetBoostAmount(maxBoost);
+		if (boost.GetCurrentBoostAmount() > maxBoost) {
+			boost.SetBoostAmount(maxBoost);
+		}
 	}
 
 	auto carVelocity = receiver.GetVelocity();
@@ -87,8 +89,18 @@ void SpeedBoost::onTick() {
 		}
 		auto boost = car.GetBoostComponent();
 		if (!boost.IsNull()) {
-			boost.SetBoostAmount(maxBoost);
+			if (boost.GetCurrentBoostAmount() > maxBoost) {
+				boost.SetBoostAmount(maxBoost);
+			}
 		}
+	}
+}
+
+void SpeedBoost::setMaxBoost(int newBoost) {
+	if (newBoost == 0) {
+		maxBoost = 0.0;
+	} else {
+		maxBoost = (float)newBoost / 100.0;
 	}
 }
 
